@@ -37,7 +37,7 @@ public class OrderController {
     }
 
     @GetMapping(path = "{id}")
-    Order fetchOrderById(@RequestParam String id){
+    Order fetchOrderById(@PathVariable String id){
         return orderService.getById(id);
     }
 
