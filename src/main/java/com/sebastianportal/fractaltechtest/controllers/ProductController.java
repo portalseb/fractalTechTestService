@@ -3,12 +3,14 @@ package com.sebastianportal.fractaltechtest.controllers;
 import com.sebastianportal.fractaltechtest.models.Product;
 import com.sebastianportal.fractaltechtest.services.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/products")
