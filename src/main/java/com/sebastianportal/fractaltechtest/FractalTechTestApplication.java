@@ -2,6 +2,7 @@ package com.sebastianportal.fractaltechtest;
 
 import com.sebastianportal.fractaltechtest.models.Order;
 import com.sebastianportal.fractaltechtest.models.Product;
+import com.sebastianportal.fractaltechtest.models.ProductLine;
 import com.sebastianportal.fractaltechtest.repos.OrderRepository;
 import com.sebastianportal.fractaltechtest.repos.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -43,18 +44,29 @@ public class FractalTechTestApplication {
             productRepository.findByName(miceName)
                     .ifPresentOrElse(p ->{System.out.println("Already created");}, ()->{System.out.println("Inserting product "+ mice);
                         productRepository.insert(mice);});
+            ProductLine pl1= new ProductLine();
+            pl1.setProduct(ram);
+            pl1.setQty(1L);
+            pl1.setTotalPrice(ram.getUnitPrice()* pl1.getQty());
+            ProductLine pl2= new ProductLine();
+            pl2.setProduct(mice);
+            pl2.setQty(3L);
+            pl2.setTotalPrice(mice.getUnitPrice()* pl2.getQty());
+            ProductLine pl3= new ProductLine();
+            pl3.setProduct(keyboard);
+            pl3.setQty(1L);
+            pl3.setTotalPrice(keyboard.getUnitPrice()* pl3.getQty());
             Order order = new Order();
             order.setOrderNo(1L);
             order.setDate(LocalDateTime.now());
             double price = 0;
-            List<Product> productList = new ArrayList<>();
-            productList.add(ram);
-            productList.add(mice);
-            productList.add(mice);
-            productList.add(mice);
-            productList.add(keyboard);
-            for (Product prod: productList) {
-                price+=prod.getUnitPrice();
+            List<ProductLine> productList = new ArrayList<>();
+
+            productList.add(pl1);
+            productList.add(pl2);
+            productList.add(pl3);
+            for (ProductLine prodLin: productList) {
+                price+=prodLin.getTotalPrice();
             }
             order.setProducts(productList);
             order.setFinalPrice(price);

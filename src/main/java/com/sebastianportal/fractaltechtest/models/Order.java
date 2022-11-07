@@ -18,7 +18,7 @@ public class Order {
     @Indexed(unique=true)
     private Long orderNo;
     private LocalDateTime date;
-    private List<Product> products;
+    private List<ProductLine> products;
     private double finalPrice;
 
 }
